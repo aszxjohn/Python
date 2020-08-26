@@ -23,9 +23,11 @@ import random
 """
 def GuessTheNumber_function(GuessTheNumberFunction_Number):
 
-    while (len(GuessTheNumberFunction_Number) != 4 or GuessTheNumberFunction_Number[0] == '0' or GuessTheNumberFunction_Number == 'Number repeat' ):
+    while (len(GuessTheNumberFunction_Number) != 4 or GuessTheNumberFunction_Number[0] == '0' or GuessTheNumberFunction_Number == 'Number repeat' or GuessTheNumberFunction_Number.isnumeric() == False  ):
         if GuessTheNumberFunction_Number[0] == '0':
             GuessTheNumberFunction_Number = str(input("請重新輸入~~開頭不能為0!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
+        elif GuessTheNumberFunction_Number.isnumeric() == False:
+            GuessTheNumberFunction_Number = str(input("請重新輸入~~請使用數字輸入!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
         else:
             GuessTheNumberFunction_Number = str(input("請重新輸入~~請輸入四位數喔!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
         
@@ -33,7 +35,8 @@ def GuessTheNumber_function(GuessTheNumberFunction_Number):
             if GuessTheNumberFunction_Number[z] == GuessTheNumberFunction_Number[z+1]:
                 GuessTheNumberFunction_Number = str(input("請重新輸入~~請不要輸入重複的數字喔!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
                 GuessTheNumberFunction_Number = 'Number repeat'
-
+    if  GuessTheNumberFunction_Number.isnumeric():
+        GuessTheNumberFunction_Number = str(input("請重新輸入~~請使用數字輸入!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
 
     return GuessTheNumberFunction_Number
 
