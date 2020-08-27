@@ -35,8 +35,7 @@ def GuessTheNumber_function(GuessTheNumberFunction_Number):
             if GuessTheNumberFunction_Number[z] == GuessTheNumberFunction_Number[z+1]:
                 GuessTheNumberFunction_Number = str(input("請重新輸入~~請不要輸入重複的數字喔!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
                 GuessTheNumberFunction_Number = 'Number repeat'
-    if  GuessTheNumberFunction_Number.isnumeric():
-        GuessTheNumberFunction_Number = str(input("請重新輸入~~請使用數字輸入!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
+    
 
     return GuessTheNumberFunction_Number
 
