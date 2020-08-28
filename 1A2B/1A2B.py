@@ -21,36 +21,33 @@ import random
 本遊戲沒有次數上限讓你猜到贏， 加油！！
 
 """
-def GuessTheNumber_function(GuessTheNumberFunction_Number):
+def guess_number_check(guess_number):
 
-    while (len(GuessTheNumberFunction_Number) != 4 or GuessTheNumberFunction_Number[0] == '0' or GuessTheNumberFunction_Number == 'Number repeat' or GuessTheNumberFunction_Number.isnumeric() == False  ):
-        if GuessTheNumberFunction_Number[0] == '0':
-            GuessTheNumberFunction_Number = str(input("請重新輸入~~開頭不能為0!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
-        elif GuessTheNumberFunction_Number.isnumeric() == False:
-            GuessTheNumberFunction_Number = str(input("請重新輸入~~請使用數字輸入!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
+    while (len(guess_number) != 4 or guess_number[0] == '0' or guess_number == 'Number repeat' or guess_number.isnumeric() == False  ):
+        if guess_number[0] == '0':
+            guess_number = str(input("請重新輸入~~開頭不能為0!! \n" + "1.第一個數字不能為零! \n" + "2.請不要輸入重複的數字 \n" + "3.請輸入四位數(0-9)："))
+        elif guess_number.isnumeric() == False:
+            guess_number = str(input("請重新輸入~~請使用數字輸入!! \n" + "1.第一個數字不能為零! \n" + "2.請不要輸入重複的數字 \n" + "3.請輸入四位數(0-9)："))
         else:
-            GuessTheNumberFunction_Number = str(input("請重新輸入~~請輸入四位數喔!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
+            guess_number = str(input("請重新輸入~~請輸入四位數喔!! \n" + "1.第一個數字不能為零! \n" + "2.請不要輸入重複的數字 \n" + "3.請輸入四位數(0-9)："))
         
-        for z in range(len(GuessTheNumberFunction_Number)-1):
-            if GuessTheNumberFunction_Number[z] == GuessTheNumberFunction_Number[z+1]:
-                GuessTheNumberFunction_Number = str(input("請重新輸入~~請不要輸入重複的數字喔!! \n"+"1.第一個數字不能為零! \n"+"2.請不要輸入重複的數字 \n"+"3.請輸入四位數(0-9)："))
-                GuessTheNumberFunction_Number = 'Number repeat'
-    
+        for i in range(len(guess_number) - 1):
+            if guess_number[i] == guess_number[i+1]:
+                guess_number = str(input("請重新輸入~~請不要輸入重複的數字喔!! \n" + "1.第一個數字不能為零! \n" + "2.請不要輸入重複的數字 \n" + "3.請輸入四位數(0-9)："))
+                guess_number = 'Number repeat'
 
-    return GuessTheNumberFunction_Number
-
+    return guess_number
        
 
-def Judgment(GuessTheNumber_Judgment,TitleNumber_Judgment):
+def judgement(guess_number, anwser):
     A = 0
     B = 0
     
-    for x in range(0,4):
-        if GuessTheNumber_Judgment[x] == TitleNumber_Judgment[x]:
-            A = A+1
-        elif GuessTheNumber_Judgment[x] in TitleNumber_Judgment:
+    for x in range(0, 4):
+        if guess_number[x] == anwser[x]:
+            A = A + 1
+        elif guess_number[x] in anwser:
             B = B+1
-
 
     if A == 4:
         return 'win'
@@ -58,45 +55,36 @@ def Judgment(GuessTheNumber_Judgment,TitleNumber_Judgment):
         print(str(A) + 'A '+str(B) + 'B')
     
 
-def Generator():
-    
-    TitleNumber = '0'
-    randomNumber = ''
+def generator():
+    result_number = '0'
+    random_number = ''
 
-    while(TitleNumber[0] == '0'):
-        TitleNumber = ''
+    while(result_number[0] == '0'):
+        result_number = ''
         for i in range(0,4):
-            randomNumber = str(random.randint(0,9))
+            random_number = str(random.randint(0, 9))
 
-            while(randomNumber in TitleNumber):
-                randomNumber = str(random.randint(1,9))
+            while(random_number in result_number):
+                random_number = str(random.randint(1, 9))
         
-            TitleNumber = str(TitleNumber) + str(randomNumber)
+            result_number = str(result_number) + str(random_number)
 
+    return result_number
 
-    return TitleNumber
+def main():
+    anwser = generator()
+    print('The anwser ：　'+ str(anwser))
 
+    guess_number = guess_number_check(str(input('請輸入四位不已0開頭，也不重複的數字(0-9)')))
+    judgement_victory_conditions = ''
 
+    while (judgement_victory_conditions != 'win'):
+        guess_number = str(input('猜錯瞜~~ 請在猜一次 <3 (0-9)'))
+        guess_number = guess_number_check(guess_number)
 
+        judgement_victory_conditions = judgement(guess_number, anwser)
 
+    print('you win')
 
-
-TitleNumber = Generator()
-print('TitleNumber ：　'+ str(TitleNumber))
-
-GuessTheNumber = GuessTheNumber_function(str(input('請輸入四位不已0開頭，也不重複的數字(0-9)')))
-Judgment_VictoryConditions = ''
-
-while (Judgment_VictoryConditions != 'win'):
-
-    
-    GuessTheNumber = str(input('猜錯瞜~~ 請在猜一次 <3 (0-9)'))
-    GuessTheNumber = GuessTheNumber_function(GuessTheNumber)
-
-
-    Judgment_VictoryConditions = Judgment(GuessTheNumber,TitleNumber)
-
-
-
-
-print('you win')
+if __name__ == '__main__':
+    main()
