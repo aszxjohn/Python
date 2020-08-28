@@ -23,7 +23,7 @@ import random
 """
 def guess_number_check(guess_number):
 
-    while (len(guess_number) != 4 or guess_number[0] == '0' or guess_number == 'Number repeat' or guess_number.isnumeric() == False  ):
+    while len(guess_number) != 4 or guess_number[0] == '0' or guess_number == 'Number repeat' or guess_number.isnumeric() == False:
         if guess_number[0] == '0':
             guess_number = str(input("請重新輸入~~開頭不能為0!! \n" + "1.第一個數字不能為零! \n" + "2.請不要輸入重複的數字 \n" + "3.請輸入四位數(0-9)："))
         elif guess_number.isnumeric() == False:
@@ -47,12 +47,12 @@ def judgement(guess_number, anwser):
         if guess_number[x] == anwser[x]:
             A = A + 1
         elif guess_number[x] in anwser:
-            B = B+1
+            B = B + 1
 
     if A == 4:
         return 'win'
     else:
-        print(str(A) + 'A '+str(B) + 'B')
+        print(str(A) + 'A '+ str(B) + 'B')
     
 
 def generator():
@@ -61,7 +61,7 @@ def generator():
 
     while(result_number[0] == '0'):
         result_number = ''
-        for i in range(0,4):
+        for i in range(0, 4):
             random_number = str(random.randint(0, 9))
 
             while(random_number in result_number):
