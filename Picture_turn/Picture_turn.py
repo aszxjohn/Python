@@ -5,62 +5,92 @@ from PIL import Image
 import numpy as np
 
 
+def turn_right(array):
+    global image_array, trial_array
+
+    trial_array = image_array[::-1]
+    
+    h, w, c = image_array.shape             # 列出陣列維度並回傳給長, 寬, 深度
+
+    h = h -1
+    w = w -1
+    i, j = h, w
+
+
+    for i in range(h):
+        for j in range(w):
+            array[j, i] = trial_array[i, j]
+
+    return array
+
+
+def turn_left(array):
+    global image_array, trial_array
+
+
+    h, w, c = image_array.shape             # 列出陣列維度並回傳給長, 寬, 深度
+    h = h -1
+    w = w -1
+    i, j = h, w
+
+    for i in range(h):
+        for j in range(w):
+            array[j, i] = image_array[i, j]
+
+    array = array[::-1]
+
+    return array
+
+
+def rotate_180_degrees(array):
+    global image_array, trial_array
+
+
+    h, w, c = image_array.shape             # 列出陣列維度並回傳給長, 寬, 深度
+    h = h -1
+    w = w -1
+    i, j = h, w
+
+    for i in range(h):
+        for j in range(w):
+            array[h-i, w-j] = image_array[i, j]
+
+    return array
+
+def image_show(array):
+
+    array = array.astype(np.uint8)   # 因現在array2的格式不能直接做fromarry，所以先將他轉成uint8
+    image_array = Image.fromarray(array)    # image2 is a PIL image
+    
+    image_array.show()              # 顯示圖片
+
+
+def main():
+    global image, load_file_path, image_array, trial_array
+
+    load_file_path = os.path.dirname(__file__) + "/sample.jpg"
+    image = Image.open(load_file_path, mode='r')     # image is a PIL image 
+
+    image_array = np.array(image) # 將讀到的Image轉成numpy的陣列方便運算
+
+    trial_array = np.zeros((image_array.shape[0],image_array.shape[1],image_array.shape[2]))
+    horizontal_array = np.zeros((image_array.shape[0], image_array.shape[1], image_array.shape[2])) # 最後成品是橫向的則使用此陣列
+    upright_array = np.zeros((image_array.shape[1], image_array.shape[0], image_array.shape[2]))  # 最後成品是直向的需要使用此陣列
+
+
+    upright_array = turn_right(upright_array)
+    image_show(upright_array)
+
+    upright_array = turn_left(upright_array)
+    image_show(upright_array)
+
+    horizontal_array = rotate_180_degrees(horizontal_array)
+    image_show(horizontal_array)
 
 
 
-
-
-load_file_path = os.path.dirname(__file__) + "/sample.jpg"
-image = Image.open(load_file_path, mode='r')     # image is a PIL image 
-
-array1 = np.array(image)          # array is a numpy array 
-array2 = np.zeros((array1.shape[0],array1.shape[1],array1.shape[2])) # 建立一個空的三維陣列使他與原本的一樣大小
-array3 = np.zeros((array1.shape)) # 建立一個空的三維陣列使他與原本的一樣大小
-array4 = np.zeros((array1.shape[1],array1.shape[0],array1.shape[2])) 
-array5 = np.zeros((array1.shape[1],array1.shape[0],array1.shape[2])) 
-
-print(array1.shape)
-print(array2.shape)
-print(array3.shape)
-
-h, w, c = array1.shape             # 列出陣列維度並回傳給長, 寬, 深度
-i, j = h, w
-h = h -1
-w = w -1
-
-for i in range(h):
-    for j in range(w):
-        array2[h-i, w-j] = array1[i, j]
+if __name__ == "__main__":
+    main()
 
 
 
-array3 = array1[::-1]
-
-for i in range(h):
-    for j in range(w):
-        array4[j, i] = array3[i, j]
-
-
-for i in range(h):
-    for j in range(w):
-        array5[j, i] = array1[i, j]
-
-array5 = array5[::-1]
-
-array2 = array2.astype(np.uint8)   # 因現在array2的格式不能直接做fromarry，所以先將他轉成uint8
-image2 = Image.fromarray(array2)    # image2 is a PIL image
-
-array3 = array3.astype(np.uint8)   # 因現在array2的格式不能直接做fromarry，所以先將他轉成uint8
-array3 = Image.fromarray(array3)    # image2 is a PIL image
-
-array4 = array4.astype(np.uint8)   # 因現在array2的格式不能直接做fromarry，所以先將他轉成uint8
-array4 = Image.fromarray(array4)    # image2 is a PIL image
-
-array5 = array5.astype(np.uint8)   # 因現在array2的格式不能直接做fromarry，所以先將他轉成uint8
-array5 = Image.fromarray(array5)    # image2 is a PIL image
-
-image.show()
-image2.show()
-#array3.show()
-array4.show()
-array5.show()
