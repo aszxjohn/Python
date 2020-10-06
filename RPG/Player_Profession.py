@@ -2,13 +2,13 @@
 #玩家職業與生物
 from creature import creature
 
-class Swordsman(creature):
+class swordsman(creature):
 
     
     def __init__(self, name):   
         super(Swordsman, self).__init__(name)
 
-    def New_creature(self):
+    def new_creature(self):
         self.LV = 1
         self.HP = 70
         self.MP = 50

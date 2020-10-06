@@ -14,7 +14,7 @@ class creature():
         self.DEF = 0
         self.SPD = 0
 
-    def New_creature():
+    def new_creature():
         self.LV = 1
         pass
     
