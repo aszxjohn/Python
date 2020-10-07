@@ -39,12 +39,12 @@ class Skill:
         normal_attack = Skill.skill_table.loc[Skill.skill_table['ID'] == 'Normal_Attack', ['ID', 'Name','Type', 'mp_cost', 'DamageModifier', 'Commentary']]  #搜尋ID欄位內是''Normal_Attack''的資料並傳給'normal_attack'
         
 
-        name = str(normal_attack.loc[0, 'Name']) 
-        mp_cost = int(normal_attack.loc[0, 'mp_cost'])
-        DamageModifier = int(normal_attack.loc[0, 'DamageModifier'])
-        Commentary = str(normal_attack.loc[0, 'Commentary'])
+        self.name = str(normal_attack.loc[0, 'Name']) 
+        self.mp_cost = int(normal_attack.loc[0, 'mp_cost'])
+        self.DamageModifier = int(normal_attack.loc[0, 'DamageModifier'])
+        self.Commentary = str(normal_attack.loc[0, 'Commentary'])
 
-        #print('name = {}, mp_cost = {}, DamageModifier = {}, Commentary = {}'.format(name, mp_cost, DamageModifier, Commentary))
+        print('name = {}, mp_cost = {}, DamageModifier = {}, Commentary = {}'.format(self.name, self.mp_cost, self.DamageModifier, self.Commentary))
 
 
     def skill_Slash(self):
@@ -53,26 +53,35 @@ class Skill:
         Slash = Skill.skill_table.loc[Skill.skill_table['ID'] == 'Slash', ['ID', 'Name','Type', 'mp_cost', 'DamageModifier', 'Commentary']]  #搜尋ID欄位內是''Slash''的資料並傳給'skill_Slash'
  
 
-        name = str(Slash.loc[1, 'Name']) 
-        mp_cost = int(Slash.loc[1, 'mp_cost'])
-        DamageModifier = int(Slash.loc[1, 'DamageModifier'])
-        Commentary = str(Slash.loc[1, 'Commentary'])
+        self.name = str(Slash.loc[1, 'Name']) 
+        self.mp_cost = int(Slash.loc[1, 'mp_cost'])
+        self.DamageModifier = int(Slash.loc[1, 'DamageModifier'])
+        self.Commentary = str(Slash.loc[1, 'Commentary'])
 
-        #print('name = {}, mp_cost = {}, DamageModifier = {}, Commentary = {}'.format(name, mp_cost, DamageModifier, Commentary))
+        print('name = {}, mp_cost = {}, DamageModifier = {}, Commentary = {}'.format(self.name, self.mp_cost, self.DamageModifier, self.Commentary))
         
 
     def skill_jump_hit(self):
 
-            jump_hit = []
-            jump_hit = Skill.skill_table.loc[Skill.skill_table['ID'] == 'jump_hit', ['ID', 'Name','Type', 'mp_cost', 'DamageModifier', 'Commentary']]  #搜尋ID欄位內是''jump_hit''的資料並傳給'skill_jump_hit'
+        jump_hit = []
+        jump_hit = Skill.skill_table.loc[Skill.skill_table['ID'] == 'jump_hit', ['ID', 'Name','Type', 'mp_cost', 'DamageModifier', 'Commentary']]  #搜尋ID欄位內是''jump_hit''的資料並傳給'skill_jump_hit'
     
 
-            name = str(jump_hit.loc[2, 'Name']) 
-            mp_cost = int(jump_hit.loc[2, 'mp_cost'])
-            DamageModifier = int(jump_hit.loc[2, 'DamageModifier'])
-            Commentary = str(jump_hit.loc[2, 'Commentary'])
+        self.name = str(jump_hit.loc[2, 'Name']) 
+        self.mp_cost = int(jump_hit.loc[2, 'mp_cost'])
+        self.DamageModifier = int(jump_hit.loc[2, 'DamageModifier'])
+        self.Commentary = str(jump_hit.loc[2, 'Commentary'])
 
-            print('name = {}, mp_cost = {}, DamageModifier = {}, Commentary = {}'.format(name, mp_cost, DamageModifier, Commentary))
+        print('name = {}, mp_cost = {}, DamageModifier = {}, Commentary = {}'.format(self.name, self.mp_cost, self.DamageModifier, self.Commentary))
+
+
+    def skill_use(self, skill_name, pler_str, monster_HP, monster_DEF):
+        
+
+        monster_HP = monster_HP - ( ( pler_str * self.DamageModifier ) - monster_DEF )
+
+        print('monster_HP = {}'.format(monster_HP))
+
             
 
 
@@ -85,8 +94,10 @@ def main():
     skill_test.load_from_file()
     #skill_test.skill_table_show()
     #skill_test.skill_normal_attack()
-    #skill_test.skill_Slash()
+    skill_test.skill_Slash()
     #skill_test.skill_jump_hit()
+    skill_test.skill_use('slash', 20, 80, 5)
+
 
 if __name__ == "__main__":
     main()
