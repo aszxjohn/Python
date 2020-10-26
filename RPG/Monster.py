@@ -6,7 +6,7 @@ from creature import creature
 class monster_skeleton_shield_soldier(creature):
     
     def __init__(self, name):   
-        super(Monster_Skeleton_Shield_Soldier, self).__init__(name = '骷髏劍盾兵')
+        super(monster_skeleton_shield_soldier, self).__init__(name = '骷髏劍盾兵')
 
     def new_creature(self):
 
@@ -34,6 +34,7 @@ class monster_skeleton_shield_soldier(creature):
 def main():
     monster_test = monster_skeleton_shield_soldier('Monster_test')
     monster_test.new_creature()
+    monster_test.show_status()
     for i in range(9):
         monster_test.creature_upgrade()
         monster_test.show_status()

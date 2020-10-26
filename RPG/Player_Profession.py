@@ -6,7 +6,7 @@ class swordsman(creature):
 
     
     def __init__(self, name):   
-        super(Swordsman, self).__init__(name)
+        super(swordsman, self).__init__(name)
 
     def new_creature(self):
         self.LV = 1
@@ -17,7 +17,8 @@ class swordsman(creature):
         self.DEF = 3
         self.MATK = 2
         self.SPD = 5
-    
+        self.skill_list = ['normal attack', 'Slash', 'jump hit']
+
     def creature_upgrade(self):
         if self.LV < 6 :
             self.LV = self.LV + 1
@@ -35,8 +36,8 @@ class swordsman(creature):
 
 
 def main():
-    play_1 = Swordsman('play_1')
-    play_1.New_creature()
+    play_1 = swordsman('play_1')
+    play_1.new_creature()
 
     for i in range(0, 9, 1):
         play_1.creature_upgrade()
