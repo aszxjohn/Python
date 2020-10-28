@@ -1,7 +1,9 @@
 import sys
 
-def str_to_class(classname):
-    return getattr(sys.modules[__name__], classname)
+from test_2 import test_30
+
+from test_2 import str_to_class
+
 
 class test():
     
@@ -13,20 +15,13 @@ class test():
         print("yo")
 
 
-b = test
-
-c = 'test'
-
-
-print(type(b))
-
-c = str_to_class(c)
-
-test={'a': b, 'c' : c}
 
 
 
-#test['a']()
-d = test['c']()
 
-d.print_yo()
+a = test_30.print_yo
+
+b = str_to_class(a)
+
+b.print_yo
+

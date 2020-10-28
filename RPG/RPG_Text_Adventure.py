@@ -5,7 +5,12 @@
 import pandas as pd
 import numpy as np
 
-from skill import Skill
+from skill import skill
+from skill import normal_attack
+from skill import slash
+from skill import jump_hit
+from skill import skill_action
+
 from creature import creature 
 from Monster import monster_skeleton_shield_soldier
 from Player_Profession import swordsman
@@ -65,6 +70,7 @@ def Monster_summon_Function(player_LV):
 def fighting_Function(player,Monster_summon):
 
     fighting = 'In_battle'
+    skill_action_class = skill_action()
 
     while fighting == 'In_battle':
         
@@ -80,9 +86,19 @@ def fighting_Function(player,Monster_summon):
 
                 
                 play_action = input('要使用哪個技能呢?   1.{}  2.{}  3.{}\n'.format(player.skill_list[0], player.skill_list[1], player.skill_list[2]))
+                play_action = play_action.lower()
                 
+                if play_action in  skill_action_class.skill_table:
+                    
 
+                    play_action = skill_action_class.skill_table[play_action]()
 
+                    player_attack_power = play_action.skill_use(player.STR)
+
+                    Monster_summon.HP = skill_action_class.skill_to_use(Monster_summon.HP, Monster_summon.DEF, player_attack_power)
+
+                else:
+                    print('沒有這一招是喔，請重新選擇')
 
 
                 

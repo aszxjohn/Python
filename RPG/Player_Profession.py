@@ -17,7 +17,7 @@ class swordsman(creature):
         self.DEF = 3
         self.MATK = 2
         self.SPD = 5
-        self.skill_list = ['normal attack', 'Slash', 'jump hit']
+        self.skill_list = ['normal_attack', 'slash', 'jump_hit']
 
     def creature_upgrade(self):
         if self.LV < 6 :
