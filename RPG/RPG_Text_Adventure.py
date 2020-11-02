@@ -58,9 +58,10 @@ def Monster_summon_Function(player_LV):
     Monster_summon = monster_skeleton_shield_soldier('骷髏劍盾兵')
     Monster_summon.new_creature()
 
-    if Monster_summon.LV < player_LV:
-        for i in player_LV:
-            Monster_summon.creature_upgrade
+    while player_LV > Monster_summon.LV:
+
+        Monster_summon.creature_upgrade()
+
 
     print('你現在碰到一個 \'{}\' 請問你要做甚麼呢?'.format(Monster_summon.name))
 
@@ -109,6 +110,14 @@ def fighting_Function(player,Monster_summon):
 
             if Monster_summon.HP <= 0 :
                 fighting = 'End of the battle'
+
+
+                get_exp = Monster_summon.EXPGive()
+                player.EXPOwnValue,  leve_up = player.LeveUP(get_exp)
+
+                if leve_up == 'yes':
+                    player.creature_upgrade()
+
 
                 print('戰鬥結束--玩家獲勝')
 

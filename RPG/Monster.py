@@ -13,7 +13,7 @@ class monster_skeleton_shield_soldier(creature):
         self.LV = 1
         self.HP = 12
         self.STR = 15
-        self.DEF = 7
+        self.DEF = 4
         self.MATK = 7
         self.SPD = 2
     
@@ -28,6 +28,9 @@ class monster_skeleton_shield_soldier(creature):
         elif self.LV >= 6:
             print("等級已經最大")
 
+    def EXPGive(self):
+
+        return int(5 * self.LV)
 
 
 

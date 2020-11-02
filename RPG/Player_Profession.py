@@ -17,6 +17,9 @@ class swordsman(creature):
         self.DEF = 3
         self.MATK = 2
         self.SPD = 5
+        self.EXPTotalValue = 1 * self.LV
+        self.EXPOwnValue = 0
+
         self.skill_list = ['normal_attack', 'slash', 'jump_hit']
 
     def creature_upgrade(self):
@@ -32,6 +35,20 @@ class swordsman(creature):
         elif self.LV >= 6:
             print("等級已經最大")
 
+
+    def LeveUP(self, GetEXP):
+
+        leve_up = 'No'
+
+        self.EXPOwnValue = self.EXPOwnValue + GetEXP
+
+        if self.EXPOwnValue >= self.EXPTotalValue:
+
+            self.EXPOwnValue = self.EXPOwnValue - self.EXPTotalValue
+            leve_up = 'yes'
+
+
+        return self.EXPOwnValue,  leve_up
 
 
 
